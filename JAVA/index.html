@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MaVi | SRE Managed Services & Web Development</title>
+    <!-- Google Fonts & modern styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0a0c10;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* modern container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0f2b3d 0%, #1b4f6e 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* navbar */
+        .navbar {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e9edf2;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f2b3d, #1e5a7a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1e2f3e;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0f6e8c;
+        }
+        .btn-outline {
+            border: 1.5px solid #1e5a7a;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            background: transparent;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #1e5a7a;
+            color: white;
+            border-color: #1e5a7a;
+        }
+
+        /* buttons */
+        .btn-primary {
+            background: #0f2b3d;
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .btn-primary:hover {
+            background: #1a4d6b;
+            transform: translateY(-2px);
+        }
+
+        /* hero */
+        .hero {
+            padding: 80px 0 70px;
+            background: linear-gradient(120deg, #ffffff 0%, #f1f6f9 100%);
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        .hero-content {
+            flex: 1;
+            min-width: 280px;
+        }
+        .badge {
+            background: #e6f2f7;
+            color: #1a5d7a;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            color: #0a1c28;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #2c4458;
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        .stat span:first-child {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f2b3d;
+        }
+        .hero-right {
+            flex: 1;
+            background: #eef3f8;
+            padding: 2rem;
+            border-radius: 36px;
+            text-align: center;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.05);
+        }
+        .pillar-icon {
+            font-size: 2.2rem;
+        }
+
+        /* section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+        .section-header p {
+            color: #4a5b6e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* cards grid */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .card-sre {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            width: 280px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e9edf2;
+            transition: 0.25s ease;
+        }
+        .card-sre:hover {
+            transform: translateY(-6px);
+            border-color: #cbdde8;
+            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.08);
+        }
+        .icon-lg {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+        }
+        .pillar-tag {
+            font-size: 0.75rem;
+            background: #eef3fc;
+            display: inline-block;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: #1e5a7a;
+        }
+
+        /* goals list */
+        .goals-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .goal-item {
+            flex: 1;
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        .goal-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #cbdde8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* table style (service catalog) */
+        .catalog-table {
+            overflow-x: auto;
+            background: white;
+            border-radius: 28px;
+            padding: 0.5rem;
+            border: 1px solid #eef2f6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 1rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eef2f6;
+        }
+        th {
+            background: #f8fafd;
+            font-weight: 600;
+            color: #1e2f3e;
+        }
+        .tech-badge {
+            background: #eef3fc;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin: 0.1rem;
+        }
+
+        /* AI advantage blocks */
+        .ai-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: #0f2b3d;
+            border-radius: 40px;
+            padding: 2rem;
+            color: white;
+            margin: 2rem 0;
+        }
+        .ai-content {
+            flex: 2;
+        }
+        .ai-stats {
+            flex: 1;
+            background: #1e4057;
+            border-radius: 28px;
+            padding: 1.5rem;
+        }
+
+        /* footer */
+        .footer {
+            background: #0a1c28;
+            color: #cbd5e1;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container nav-inner">
+        <div class="logo">MaVi</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#sre-pillars">SRE</a>
+            <a href="#offerings">Offerings</a>
+            <a href="#catalog">Catalog</a>
+            <a href="#contact" class="btn-outline">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="badge">Reliability Protocols Active</div>
+            <h1>We help startups & businesses achieve <span class="gradient-text">99.99% uptime</span> with our SRE managed services.</h1>
+            <p>Maxi Vision bridges the gap between Web Development and Site Reliability. We engineer ultra-fast, secure, and scalable platforms trusted by startups and enterprises.</p>
+            <a href="#contact" class="btn-primary">Talk to an SRE expert →</a>
+            <div class="hero-stats">
+                <div class="stat"><span>99.99%</span><br>Uptime SLA</div>
+                <div class="stat"><span>↓85%</span><br>MTTR Reduction</div>
+                <div class="stat"><span>24/7</span><br>Global Coverage</div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚙️ 🔍 ☁️</div>
+            <h3 style="margin-bottom: 1rem;">SRE as a Service</h3>
+            <p>Proactive incident management, observability, and self-healing infrastructure.</p>
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+                <div><span class="pillar-icon">📊</span><br>Grafana</div>
+                <div><span class="pillar-icon">🐙</span><br>Prometheus</div>
+                <div><span class="pillar-icon">☁️</span><br>K8s</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SRE PILLARS -->
+<section id="sre-pillars" style="padding: 70px 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2>SRE Pillars</h2>
+            <p>Engineering reliability using software to solve operational problems — move away from reactive fixes.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card-sre"><div class="icon-lg">⚙️</div><h3>Automated Operations</h3><p>Eliminating manual 'toil' through intelligent scripts and self-healing systems.</p><div class="pillar-tag">Zero-touch automation</div></div>
+            <div class="card-sre"><div class="icon-lg">📈</div><h3>Scalable Architecture</h3><p>Ensure your systems grow as fast as your user base without performance lag.</p><div class="pillar-tag">Elastic scaling</div></div>
+            <div class="card-sre"><div class="icon-lg">🔒</div><h3>Maximum Uptime</h3><p>Engineering reliability into the fabric of your digital ecosystem, proactive SLOs.</p><div class="pillar-tag">99.99% commitment</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategic Execution / Goals (Observability, Incident Mgmt, IaC, Performance) -->
+<section style="background: #f1f6fc; padding: 70px 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2>Strategic Execution</h2>
+            <p>Our SRE methodology in action</p>
+        </div>
+        <div class="goals-grid">
+            <div class="goal-item"><div class="goal-number">01</div><h3>Observability & Monitoring</h3><p>Building "single panes of glass" using Grafana, Prometheus, Datadog for real-time insights.</p><span style="color:#1e5a7a; font-weight:500;">Enterprise Ready</span></div>
+            <div class="goal-item"><div class="goal-number">02</div><h3>Incident Management</h3><p>24/7 proactive response with PagerDuty/Opsgenie to minimize downtime.</p><span style="color:#1e5a7a; font-weight:500;">Enterprise Ready</span></div>
+            <div class="goal-item"><div class="goal-number">03</div><h3>Infrastructure as Code</h3><p>Automate with Terraform/Ansible, version-controlled and error-free deployments.</p><span style="color:#1e5a7a; font-weight:500;">Enterprise Ready</span></div>
+            <div class="goal-item"><div class="goal-number">04</div><h3>Performance Engineering</h3><p>Continuous optimization of app code & cloud resources to maximize speed, minimize costs.</p><span style="color:#1e5a7a; font-weight:500;">Enterprise Ready</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Offerings -->
+<section id="offerings" style="padding: 70px 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2>Core Offerings</h2>
+            <p>Future-proof engineering & managed services</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card-sre"><div class="icon-lg">🛡️</div><h3>SRE as a Service</h3><p>Proactive incident management, 24/7 on-call response, deep RCA.</p></div>
+            <div class="card-sre"><div class="icon-lg">📡</div><h3>Monitoring & Observability</h3><p>Real-time dashboards, distributed tracing, intelligent logging.</p></div>
+            <div class="card-sre"><div class="icon-lg">🔄</div><h3>DevOps Automation</h3><p>High-performance CI/CD pipelines, Infrastructure as Code.</p></div>
+            <div class="card-sre"><div class="icon-lg">☁️</div><h3>CloudOps</h3><p>Cost optimization, dynamic scaling, disaster recovery (AWS/Azure/GCP).</p></div>
+            <div class="card-sre"><div class="icon-lg">⚡</div><h3>Performance Engineering</h3><p>Load testing, capacity planning, infrastructure-level tuning.</p></div>
+            <div class="card-sre"><div class="icon-lg">🌐</div><h3>Offshore Development Center</h3><p>Dedicated engineering teams, scalable and cost-effective.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Catalog Table (matching original tone) -->
+<section id="catalog" style="background: #ffffff; padding: 60px 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2>Service Catalog</h2>
+            <p>Support & Monitoring — operational coverage with modern tooling</p>
+        </div>
+        <div class="catalog-table">
+            <table>
+                <thead>
+                    <tr><th>Service Stream</th><th>Operational Coverage</th><th>Tooling & Stack</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>IT Infrastructure Monitoring</td><td>24×7 server uptime, CPU/memory alerts, disk usage</td><td><span class="tech-badge">Prometheus</span> <span class="tech-badge">Grafana</span> <span class="tech-badge">Zabbix</span></td></tr>
+                    <tr><td>Application & Website Monitoring</td><td>API uptime, response time alerts, user transaction monitoring</td><td><span class="tech-badge">Pingdom</span> <span class="tech-badge">New Relic</span> <span class="tech-badge">Datadog</span></td></tr>
+                    <tr><td>Cloud / DevOps Support</td><td>AWS, Azure, GCP, cost optimization, auto-scaling</td><td><span class="tech-badge">AWS</span> <span class="tech-badge">Terraform</span> <span class="tech-badge">Kubernetes</span></td></tr>
+                    <tr><td>SRE / Managed Services</td><td>Proactive incident management, observability dashboards, on-call rotation</td><td><span class="tech-badge">PagerDuty</span> <span class="tech-badge">Opsgenie</span> <span class="tech-badge">Ansible</span></td></tr>
+                    <tr><td>Offshore Development Center</td><td>Dedicated engineering teams as extension of in-house department</td><td><span class="tech-badge">Full-Stack</span> <span class="tech-badge">Agile</span> <span class="tech-badge">DevOps</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- AI ADVANTAGE block (inspired by "Intelligence Layer") -->
+<section style="padding: 40px 0 60px;">
+    <div class="container">
+        <div class="ai-block">
+            <div class="ai-content">
+                <h2 style="color:white; font-size: 1.9rem;">🧠 The MaVi AI Advantage</h2>
+                <p style="margin: 1rem 0;"><strong>Smart Alert Aggregation:</strong> When a server goes down, hundreds of alerts become panic. Our AI groups them into a single 'Root Cause' incident.</p>
+                <p style="margin: 0.5rem 0;">⚡ Before: 450 alerts → After: 1 clean notification: "DB auto-restarted. Zero impact."</p>
+                <p style="margin-top: 1rem;"><strong>AI-Powered Log Analysis</strong> — scans thousands of lines in seconds, finds the needle in the haystack.</p>
+                <div style="margin-top: 1.2rem;">✨ <strong>MTTR reduced by 85%</strong> | 99% alert noise reduction</div>
+            </div>
+            <div class="ai-stats">
+                <div style="font-size: 2.5rem; font-weight: 800;">↓85%</div>
+                <p>Mean Time to Repair</p>
+                <div style="font-size: 2rem; font-weight: 800; margin-top: 1rem;">99%</div>
+                <p>Alert noise reduction</p>
+                <div style="margin-top: 1.5rem;">🔍 Self-healing pipelines</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trusted Stack / Monitronix section -->
+<section style="text-align: center; padding: 40px 0;">
+    <div class="container">
+        <h3>Trusted by industry standards — reliability through world-class tooling</h3>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; margin: 2rem 0;">
+            <span style="font-weight: 700;">AWS</span> <span style="font-weight: 700;">Azure</span> <span style="font-weight: 700;">GCP</span>
+            <span style="font-weight: 700;">Kubernetes</span> <span style="font-weight: 700;">Docker</span>
+            <span style="font-weight: 700;">Prometheus</span> <span style="font-weight: 700;">Grafana</span>
+            <span style="font-weight: 700;">Terraform</span> <span style="font-weight: 700;">Jenkins</span>
+        </div>
+    </div>
+</section>
+
+<!-- Case study highlight / Work section -->
+<section style="background: #f0f4f9; padding: 70px 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2>Operational Success</h2>
+            <p>INFRASTRUCTURE CLUSTER — before SRE vs after Monitronix</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+            <div style="background: white; border-radius: 28px; padding: 2rem; flex:1;">
+                <h3>📉 BEFORE_SRE</h3>
+                <p>System instability caused 450+ alerts during peak hours. Engineer burnout, slow MTTR.</p>
+            </div>
+            <div style="background: #0f2b3d; color:white; border-radius: 28px; padding: 2rem; flex:1;">
+                <h3>🚀 AFTER_MONITRONIX</h3>
+                <p>Intelligent noise reduction. Zero engineer fatigue. 99.99% uptime achieved.</p>
+                <div style="margin-top: 1rem;">✅ Customer impact: ZERO</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / CTA section -->
+<section id="contact" style="padding: 70px 0;">
+    <div class="container" style="background: #ffffff; border-radius: 48px; padding: 3rem; text-align: center; box-shadow: 0 12px 35px rgba(0,0,0,0.03); border: 1px solid #eef2f8;">
+        <h2 style="font-size: 2rem;">Talk to our SRE team today</h2>
+        <p style="max-width: 600px; margin: 1rem auto; color: #2c4458;">24×7 coverage, global support, onboarding within 3–5 days. Guaranteed SLAs with detailed reporting.</p>
+        <form style="max-width: 500px; margin: 2rem auto 0;" action="#" method="post">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <input type="text" placeholder="Full name" style="flex:1; padding: 0.9rem; border-radius: 60px; border:1px solid #cbdde6; background: #fefefe;">
+                <input type="email" placeholder="Work email" style="flex:1; padding: 0.9rem; border-radius: 60px; border:1px solid #cbdde6;">
+            </div>
+            <textarea placeholder="Tell us about your reliability challenges..." rows="3" style="width:100%; margin-top: 1rem; padding: 0.9rem; border-radius: 28px; border:1px solid #cbdde6;"></textarea>
+            <button type="submit" class="btn-primary" style="margin-top: 1.5rem; width: auto; padding: 0.8rem 2rem;">Request SRE consultation →</button>
+        </form>
+        <div style="margin-top: 2rem; font-size: 0.85rem; color:#1e5a7a;">✨ Cost-effective alternative to in-house SRE | 24/7 proactive response</div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="logo" style="color:#8aaec0; margin-bottom: 1rem;">MaVi</div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+            <div><p>Site Reliability Engineering · DevOps · Cloud-Native</p><p>© 2026 Maxi Vision — reliability first.</p></div>
+            <div><a href="#" style="color:#aac3d4; text-decoration: none;">Privacy</a> · <a href="#" style="color:#aac3d4; text-decoration: none;">SLA</a></div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
